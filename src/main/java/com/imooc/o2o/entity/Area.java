@@ -18,7 +18,6 @@ import java.util.Date;
 * 2018年8月12日     KeeganRen           v1.0.0               修改原因
 */
 public class Area {
-
 	// ID
 	private Integer areaId;
 	
