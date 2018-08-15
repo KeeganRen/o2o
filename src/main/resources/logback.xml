@@ -6,7 +6,7 @@
 	<property name="log.maxHistory" value="30" />
 	<property name="log.filePath" value="${catalina.base}/logs/webapps" />
 	<!--                                      日期                                                                      线程                           日志级别                类                                       类的信息   -->
-	<property name="log.pattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thead] %-5level %logger{50} - %msg%n" />
+	<property name="log.pattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS}[%thread][%-5level]%logger{50}-%msg%n" />
 	<!-- 控制台设置 -->
 	<appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
 		<!-- 日志信息转换为字符串，并按pattern格式输出 -->
