@@ -22,7 +22,7 @@
 			<!-- 文件名称 -->
 			<fileNamePattern>${log.filePath}/debug/debug.%d{yyyy-MM-dd}.log.gz</fileNamePattern>
 			<!-- 文件最大保存历史数量 -->
-			<MaxHistory>%{log.maxHistory}</MaxHistory>
+			<maxHistory>${log.maxHistory}</maxHistory>
 		</rollingPolicy>
 		<encoder>
 			<pattern>${log.pattern}</pattern>
@@ -41,7 +41,7 @@
 			<!-- 文件名称 -->
 			<fileNamePattern>${log.filePath}/info/info.%d{yyyy-MM-dd}.log.gz</fileNamePattern>
 			<!-- 文件最大保存历史数量 -->
-			<MaxHistory>%{log.maxHistory}</MaxHistory>
+			<maxHistory>${log.maxHistory}</maxHistory>
 		</rollingPolicy>
 		<encoder>
 			<pattern>${log.pattern}</pattern>
@@ -60,7 +60,7 @@
 			<!-- 文件名称 -->
 			<fileNamePattern>${log.filePath}/error/error.%d{yyyy-MM-dd}.log.gz</fileNamePattern>
 			<!-- 文件最大保存历史数量 -->
-			<MaxHistory>%{log.maxHistory}</MaxHistory>
+			<maxHistory>${log.maxHistory}</maxHistory>
 		</rollingPolicy>
 		<encoder>
 			<pattern>${log.pattern}</pattern>
