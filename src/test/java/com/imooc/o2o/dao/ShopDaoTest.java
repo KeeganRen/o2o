@@ -69,5 +69,36 @@ public class ShopDaoTest extends BaseTest {
 			e.printStackTrace();
 		}
 	}
+	
+	@Test
+	public void testUpdateShop() {
+			
+		PersonInfo personInfo = new PersonInfo();
+		personInfo.setUserId(1L);
+		Area area = new Area();
+		area.setAreaId(2);
+		ShopCategory shopCategory = new ShopCategory();
+		shopCategory.setShopCategoryId(1L);
+		
+		Shop shop = new Shop();
+		shop.setShopId(2L);
+		shop.setOwner(personInfo);
+		shop.setArea(area);
+		shop.setShopCategory(shopCategory);
+		shop.setShopName("测试的店铺");
+		shop.setShopDesc("测试desc");
+		shop.setShopAddr("测试adrr");
+		shop.setPhone("17826801261");
+		shop.setCreateTime(new Date());
+		shop.setLastEditTime(new Date());
+		shop.setEnableStatus(1);
+		shop.setAdvice("审核中");
+		try {
+			int effectedNum = shopDao.updateShop(shop);
+			assertEquals(1, effectedNum);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 }
