@@ -25,6 +25,30 @@ package com.imooc.o2o.util;
 */
 public class PathUtil {
 
+	// 系统分隔符
+	// win --> \\
+	// Linux/Mac --> /
+	private static String separator = System.getProperty("file.separator");
+	
+	// 获取图像路径
+	public static String getImageBasePath() {
+		String os = System.getProperty("os.name");
+		String basePath = "";
+		if (os.toLowerCase().startsWith("win")) {
+			basePath = "G:/projectdev/image/";
+		} else {
+			basePath = "/home/xiangze/image/";
+		}
+		basePath = basePath.replace("/", separator);
+		return basePath;
+	}
+	
+	// 店铺图片存储路径
+	public static String getShopImagePath(String shopId) {
+		String imagePath = "/upload/item/shop/" + shopId + "/";
+		return imagePath.replace("/", separator);
+	}
+	
 	/**   
 	* @Function: PathUtil.java
 	* @Description: 该函数的功能描述
@@ -44,7 +68,11 @@ public class PathUtil {
 	*/
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
+		String imgBasePath = getImageBasePath();
+		String shopImgPath = getShopImagePath("111");
+		System.out.println("separator = " + separator);
+		System.out.println("imgBasePath = " + imgBasePath);
+		System.out.println("shopImgPath = " + shopImgPath);
 	}
 
 }
