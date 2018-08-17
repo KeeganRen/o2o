@@ -66,6 +66,26 @@ public class ImageUtil {
 		return relativeAddr;
 	}
 	
+	// 生成缩略图
+	public static String generateThumbnail(File thumbnail, String targetAddr) {
+		
+		String realFileName = getRandomFileName();
+		String extension = getFileExtension(thumbnail);
+		makeDirPath(targetAddr);
+		String relativeAddr = targetAddr + realFileName + extension;
+		File dest = new File(PathUtil.getImageBasePath() + relativeAddr);
+		
+		try {
+			Thumbnails.of(thumbnail).size(200, 200)
+			.watermark(Positions.BOTTOM_RIGHT, ImageIO.read(new File(basePath + "watermark.jpg")), 0.25f)
+			.outputQuality(0.8f).toFile(dest);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return relativeAddr;
+	}
+	
 	// 创建文件夹
 	private static void makeDirPath(String targetAddr) {
 		String realFileParentPath = PathUtil.getImageBasePath() + targetAddr;
@@ -80,6 +100,13 @@ public class ImageUtil {
 		// 
 		String originalFileName = cMFile.getOriginalFilename();
 		return originalFileName.substring(originalFileName.lastIndexOf("."));
+	}
+	
+	// 获取输入文件的扩展名
+	private static String getFileExtension(File file) {
+		// 
+		String originalFileName = file.getName();
+		return originalFileName.substring(originalFileName.lastIndexOf(".") + 1);
 	}
 
 	// 生成随机文件名，当前年月日时分秒+5位随机数

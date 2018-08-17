@@ -44,7 +44,7 @@ public class PathUtil {
 	}
 	
 	// 店铺图片存储路径
-	public static String getShopImagePath(String shopId) {
+	public static String getShopImagePath(long shopId) {
 		String imagePath = "/upload/item/shop/" + shopId + "/";
 		return imagePath.replace("/", separator);
 	}
@@ -69,7 +69,7 @@ public class PathUtil {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		String imgBasePath = getImageBasePath();
-		String shopImgPath = getShopImagePath("111");
+		String shopImgPath = getShopImagePath(11);
 		System.out.println("separator = " + separator);
 		System.out.println("imgBasePath = " + imgBasePath);
 		System.out.println("shopImgPath = " + shopImgPath);
