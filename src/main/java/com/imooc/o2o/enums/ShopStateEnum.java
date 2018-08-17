@@ -1,28 +1,13 @@
 /**   
  * Copyright © 2018 ICBC. All rights reserved.
  * 
- * 功能描述：
+ * 功能描述：店铺状态枚举
  * @Package: com.imooc.o2o.enums 
  * @author: KeeganRen   
  * @date: 2018年8月16日 下午10:33:56 
  */
 package com.imooc.o2o.enums;
 
-/**   
-* Copyright: Copyright (c) 2018 ICBC。 All rights reserved.
-* 
-* @ClassName: ShopStateEnum.java
-* @Description: 店铺状态枚举
-*
-* @version: v1.0.0
-* @author: KeeganRen
-* @date: 2018年8月16日 下午10:33:56 
-*
-* Modification History:
-* Date         Author          Version            Description
-*---------------------------------------------------------*
-* 2018年8月16日     KeeganRen           v1.0.0               修改原因
-*/
 public enum ShopStateEnum {
 	
 	CHECK(0, "审核中"), 

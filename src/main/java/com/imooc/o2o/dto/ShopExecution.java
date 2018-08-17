@@ -13,21 +13,6 @@ import java.util.List;
 import com.imooc.o2o.entity.Shop;
 import com.imooc.o2o.enums.ShopStateEnum;
 
-/**   
-* Copyright: Copyright (c) 2018 ICBC。 All rights reserved.
-* 
-* @ClassName: ShopExecution.java
-* @Description: 该类的功能描述
-*
-* @version: v1.0.0
-* @author: KeeganRen
-* @date: 2018年8月16日 下午10:28:55 
-*
-* Modification History:
-* Date         Author          Version            Description
-*---------------------------------------------------------*
-* 2018年8月16日     KeeganRen           v1.0.0               修改原因
-*/
 public class ShopExecution {
 
 	// 结果状态

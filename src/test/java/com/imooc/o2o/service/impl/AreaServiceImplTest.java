@@ -19,21 +19,6 @@ import com.imooc.o2o.BaseTest;
 import com.imooc.o2o.entity.Area;
 import com.imooc.o2o.service.AreaService;
 
-/**   
-* Copyright: Copyright (c) 2018 ICBC。 All rights reserved.
-* 
-* @ClassName: AreaServiceImplTest.java
-* @Description: 该类的功能描述
-*
-* @version: v1.0.0
-* @author: KeeganRen
-* @date: 2018年8月14日 下午6:44:43 
-*
-* Modification History:
-* Date         Author          Version            Description
-*---------------------------------------------------------*
-* 2018年8月14日     KeeganRen           v1.0.0               修改原因
-*/
 public class AreaServiceImplTest extends BaseTest {
 
 	@Autowired

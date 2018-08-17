@@ -1,7 +1,7 @@
 /**   
  * Copyright © 2018 ICBC. All rights reserved.
  * 
- * 功能描述：
+ * 功能描述：区域-Controller
  * @Package: com.imooc.o2o.web.superadmin 
  * @author: KeeganRen   
  * @date: 2018年8月14日 下午6:58:21 
@@ -24,21 +24,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.imooc.o2o.entity.Area;
 import com.imooc.o2o.service.AreaService;
 
-/**   
-* Copyright: Copyright (c) 2018 ICBC。 All rights reserved.
-* 
-* @ClassName: AreaController.java
-* @Description: 区域-Controller
-*
-* @version: v1.0.0
-* @author: KeeganRen
-* @date: 2018年8月14日 下午6:58:21 
-*
-* Modification History:
-* Date         Author          Version            Description
-*---------------------------------------------------------*
-* 2018年8月14日     KeeganRen           v1.0.0               修改原因
-*/
 @Controller
 @RequestMapping("/superadmin")
 public class AreaController {

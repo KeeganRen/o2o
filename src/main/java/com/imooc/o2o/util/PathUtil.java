@@ -1,28 +1,13 @@
 /**   
  * Copyright © 2018 ICBC. All rights reserved.
  * 
- * 功能描述：
+ * 功能描述：路径处理基础类
  * @Package: com.imooc.o2o.util 
  * @author: KeeganRen   
  * @date: 2018年8月15日 下午10:02:39 
  */
 package com.imooc.o2o.util;
 
-/**   
-* Copyright: Copyright (c) 2018 ICBC。 All rights reserved.
-* 
-* @ClassName: PathUtil.java
-* @Description: 该类的功能描述
-*
-* @version: v1.0.0
-* @author: KeeganRen
-* @date: 2018年8月15日 下午10:02:39 
-*
-* Modification History:
-* Date         Author          Version            Description
-*---------------------------------------------------------*
-* 2018年8月15日     KeeganRen           v1.0.0               修改原因
-*/
 public class PathUtil {
 
 	// 系统分隔符
@@ -37,7 +22,7 @@ public class PathUtil {
 		if (os.toLowerCase().startsWith("win")) {
 			basePath = "G:/projectdev/image/";
 		} else {
-			basePath = "/home/xiangze/image/";
+			basePath = "/home/ren/image/";
 		}
 		basePath = basePath.replace("/", separator);
 		return basePath;
@@ -45,7 +30,7 @@ public class PathUtil {
 	
 	// 店铺图片存储路径
 	public static String getShopImagePath(long shopId) {
-		String imagePath = "/upload/item/shop/" + shopId + "/";
+		String imagePath = "upload/item/shop/" + shopId + "/";
 		return imagePath.replace("/", separator);
 	}
 	

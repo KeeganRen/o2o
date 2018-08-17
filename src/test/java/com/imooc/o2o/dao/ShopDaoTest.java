@@ -1,7 +1,7 @@
 /**   
  * Copyright © 2018 ICBC. All rights reserved.
  * 
- * 功能描述：
+ * 功能描述：店铺实体类-Dao层-测试案例
  * @Package: com.imooc.o2o.dao 
  * @author: KeeganRen   
  * @date: 2018年8月15日 下午9:04:39 
@@ -21,21 +21,6 @@ import com.imooc.o2o.entity.PersonInfo;
 import com.imooc.o2o.entity.Shop;
 import com.imooc.o2o.entity.ShopCategory;
 
-/**   
-* Copyright: Copyright (c) 2018 ICBC。 All rights reserved.
-* 
-* @ClassName: ShopDaoTest.java
-* @Description: 店铺实体类-Dao层-测试案例
-*
-* @version: v1.0.0
-* @author: KeeganRen
-* @date: 2018年8月15日 下午9:04:39 
-*
-* Modification History:
-* Date         Author          Version            Description
-*---------------------------------------------------------*
-* 2018年8月15日     KeeganRen           v1.0.0               修改原因
-*/
 public class ShopDaoTest extends BaseTest {
 
 	@Autowired
