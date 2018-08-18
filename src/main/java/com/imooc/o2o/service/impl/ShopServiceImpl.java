@@ -8,7 +8,7 @@
  */
 package com.imooc.o2o.service.impl;
 
-import java.io.File;
+import java.io.InputStream;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +37,8 @@ public class ShopServiceImpl implements ShopService {
 	 */
 	@Override
 	@Transactional
-	public ShopExecution addShop(Shop shop, File shopImg) {
+	public ShopExecution addShop(Shop shop, InputStream shopImgInputStream, String fileName)
+			throws ShopOperationException {
 		// 空店铺判断
 		if (shop == null) {
 			return new ShopExecution(ShopStateEnum.NULLSHOP);
@@ -53,10 +54,10 @@ public class ShopServiceImpl implements ShopService {
 				// RuntimeException 回滚，Exception 不会回滚
 				throw new ShopOperationException("店铺创建失败");
 			} else {
-				if (shopImg != null) {
+				if (shopImgInputStream != null) {
 					// 存储图片
 					try {
-						addShopImg(shop, shopImg);
+						addShopImg(shop, shopImgInputStream, fileName);
 					} catch (Exception e) {
 						throw new ShopOperationException("addShopImg error:" + e.getMessage());
 					}
@@ -81,9 +82,9 @@ public class ShopServiceImpl implements ShopService {
 	 * @Description: 该函数的功能描述
 	 *
 	 */
-	private void addShopImg(Shop shop, File shopImg) {
+	private void addShopImg(Shop shop, InputStream shopImgInputStream, String fileName) {
 		String dest = PathUtil.getShopImagePath(shop.getShopId());
-		String shopImgAddr = ImageUtil.generateThumbnail(shopImg, dest);
+		String shopImgAddr = ImageUtil.generateThumbnail(shopImgInputStream, fileName, dest);
 		shop.setShopImg(shopImgAddr);
 	}
 

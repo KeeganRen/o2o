@@ -38,6 +38,7 @@ import com.imooc.o2o.entity.PersonInfo;
 import com.imooc.o2o.entity.Shop;
 import com.imooc.o2o.entity.ShopCategory;
 import com.imooc.o2o.enums.ShopStateEnum;
+import com.imooc.o2o.exceptions.ShopOperationException;
 import com.imooc.o2o.service.AreaService;
 import com.imooc.o2o.service.ShopCategoryService;
 import com.imooc.o2o.service.ShopService;
@@ -127,29 +128,20 @@ public class ShopManagementController {
 			PersonInfo owner = new PersonInfo();
 			owner.setUserId(1L);
 			shop.setOwner(owner);
-			File shopImgFile = new File(PathUtil.getImageBasePath() + ImageUtil.getRandomFileName());
+			ShopExecution sExecution;
 			try {
-				shopImgFile.createNewFile();
-			} catch (IOException e) {
+				sExecution = shopService.addShop(shop, shopImg.getInputStream(), shopImg.getOriginalFilename());
+				if (sExecution.getState() == ShopStateEnum.CHECK.getState()) {
+					modelMap.put("sucess", true);
+				} else {
+					modelMap.put("sucess", false);
+					modelMap.put("errMsg", sExecution.getStateInfo());
+				}
+			} catch (ShopOperationException | IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 				modelMap.put("sucess", false);
 				modelMap.put("errMsg", e.getMessage());
-				e.printStackTrace();
-				return modelMap;
-			}
-			try {
-				inputStreamToFile(shopImg.getInputStream(), shopImgFile);
-			} catch (IOException e) {
-				modelMap.put("sucess", false);
-				modelMap.put("errMsg", e.getMessage());
-				e.printStackTrace();
-				return modelMap;
-			}
-			ShopExecution sExecution = shopService.addShop(shop, shopImgFile);
-			if (sExecution.getState() == ShopStateEnum.CHECK.getState()) {
-				modelMap.put("sucess", true);
-			} else {
-				modelMap.put("sucess", false);
-				modelMap.put("errMsg", sExecution.getStateInfo());
 			}
 			return modelMap;
 		} else {
@@ -159,28 +151,4 @@ public class ShopManagementController {
 		}
 	}
 	
-	private static void inputStreamToFile(InputStream ins, File file) {
-		FileOutputStream oStream = null;
-		try {
-			oStream = new FileOutputStream(file);
-			int bytesRead = 0;
-			byte[] buffer = new byte[1024];
-			while ((bytesRead = ins.read(buffer)) != -1) {
-				oStream.write(buffer, 0, bytesRead);
-			}
-		} catch (Exception e) {
-			throw new RuntimeException("调用inputStreamToFile产生异常：" + e.getMessage());
-		} finally {
-			try {
-				if (oStream != null) {
-					oStream.close();
-				}
-				if (ins != null) {
-					ins.close();
-				}
-			} catch (IOException e2) {
-				throw new RuntimeException("inputStreamToFile关闭IO产生异常：" + e2.getMessage());
-			}
-		}
-	}
 }

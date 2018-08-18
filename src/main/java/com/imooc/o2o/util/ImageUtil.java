@@ -9,7 +9,9 @@
 package com.imooc.o2o.util;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
@@ -17,6 +19,11 @@ import java.util.Random;
 import javax.imageio.ImageIO;
 
 import org.apache.jasper.tagplugins.jstl.core.Out;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
+
+import com.imooc.o2o.entity.PersonInfo;
 
 import net.coobird.thumbnailator.Thumbnails;
 import net.coobird.thumbnailator.geometry.Positions;
@@ -52,6 +59,27 @@ public class ImageUtil {
 		return relativeAddr;
 	}
 	
+	// 生成缩略图
+	public static String generateThumbnail(InputStream thumbnailInputStream, String fileName, String targetAddr) {
+		
+		String realFileName = getRandomFileName();
+		String extension = getFileExtension(fileName);
+		makeDirPath(targetAddr);
+		String relativeAddr = targetAddr + realFileName + extension;
+		File dest = new File(PathUtil.getImageBasePath() + relativeAddr);
+		
+		try {
+			Thumbnails.of(thumbnailInputStream).size(200, 200)
+			.watermark(Positions.BOTTOM_RIGHT, ImageIO.read(new File(basePath + "watermark.png")), 0.25f)
+			.outputQuality(0.8f).toFile(dest);
+		} catch (IOException e) {
+			e.printStackTrace();
+			throw new RuntimeException("创建缩略图失败：" + e.toString());
+		}
+
+		return relativeAddr;
+	}
+	
 	// 创建文件夹
 	private static void makeDirPath(String targetAddr) {
 		String realFileParentPath = PathUtil.getImageBasePath() + targetAddr;
@@ -68,6 +96,11 @@ public class ImageUtil {
 		String originalFileName = file.getName();
 		return originalFileName.substring(originalFileName.lastIndexOf("."));
 	}
+	
+	private static String getFileExtension(String fileName) {
+		// 
+		return fileName.substring(fileName.lastIndexOf("."));
+	}
 
 	// 生成随机文件名，当前年月日时分秒+5位随机数
 	public static String getRandomFileName() {
@@ -77,7 +110,47 @@ public class ImageUtil {
 		return nowTimeStr + rannum;
 	}
 
-
+	//// Sample
+	//	CommonsMultipartFile shopImg = null;
+	//	CommonsMultipartResolver commonsMultipartResolver = new CommonsMultipartResolver(
+	//			request.getSession().getServletContext());
+	//	if (commonsMultipartResolver.isMultipart(request)) {
+	//		MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) request;
+	//		shopImg = (CommonsMultipartFile) multipartHttpServletRequest.getFile("shopImg");
+	//	} 
+	//	File shopImgFile = new File(PathUtil.getImageBasePath() + ImageUtil.getRandomFileName());
+	//	try {
+	//		shopImgFile.createNewFile();
+	//	} catch (IOException e) {
+	//		e.printStackTrace();
+	//	}
+	//	inputStreamToFile(shopImg.getInputStream(), shopImgFile);	
+	@SuppressWarnings("unused")
+	private static void inputStreamToFile(InputStream ins, File file) {
+		FileOutputStream oStream = null;
+		try {
+			oStream = new FileOutputStream(file);
+			int bytesRead = 0;
+			byte[] buffer = new byte[1024];
+			while ((bytesRead = ins.read(buffer)) != -1) {
+				oStream.write(buffer, 0, bytesRead);
+			}
+		} catch (Exception e) {
+			throw new RuntimeException("调用inputStreamToFile产生异常：" + e.getMessage());
+		} finally {
+			try {
+				if (oStream != null) {
+					oStream.close();
+				}
+				if (ins != null) {
+					ins.close();
+				}
+			} catch (IOException e2) {
+				throw new RuntimeException("inputStreamToFile关闭IO产生异常：" + e2.getMessage());
+			}
+		}
+	}
+	
 	public static void main(String[] args) throws Exception {
 		
 		File fileImg = new File("C:\\Users\\KeeganRen\\Pictures\\图片1.jpg");

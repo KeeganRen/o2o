@@ -11,6 +11,9 @@ package com.imooc.o2o.service;
 import static org.junit.Assert.assertEquals;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.Date;
 
 import org.junit.Test;
@@ -34,9 +37,10 @@ public class ShopServiceTest extends BaseTest {
 	
 	/**
 	 * Test method for {@link com.imooc.o2o.service.ShopService#addShop(com.imooc.o2o.entity.Shop, org.springframework.web.multipart.commons.CommonsMultipartFile)}.
+	 * @throws FileNotFoundException 
 	 */
 	@Test
-	public void testAddShop() {
+	public void testAddShop() throws FileNotFoundException {
 
 		Shop shop = new Shop();
 		shop.setShopId(2L);
@@ -49,9 +53,9 @@ public class ShopServiceTest extends BaseTest {
 		ShopCategory shopCategory = new ShopCategory();
 		shopCategory.setShopCategoryId(1L);
 		shop.setShopCategory(shopCategory);
-		shop.setShopName("测试的店铺2");
-		shop.setShopDesc("test1");
-		shop.setShopAddr("test1");
+		shop.setShopName("测试的店铺3");
+		shop.setShopDesc("test3");
+		shop.setShopAddr("test3");
 		shop.setPhone("17826801261");
 		shop.setCreateTime(new Date());
 		shop.setLastEditTime(new Date());
@@ -59,8 +63,8 @@ public class ShopServiceTest extends BaseTest {
 		shop.setAdvice("审核中");
 		
 		File shopImg = new File("C:\\Users\\KeeganRen\\Pictures\\图片1.jpg");
-		
-		ShopExecution se = shopService.addShop(shop, shopImg);
+		InputStream inputStream = new FileInputStream(shopImg);
+		ShopExecution se = shopService.addShop(shop, inputStream, shopImg.getName());
 		assertEquals(ShopStateEnum.CHECK.getState(), se.getState());
 
 	}
