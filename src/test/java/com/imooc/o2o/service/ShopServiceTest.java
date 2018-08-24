@@ -53,9 +53,9 @@ public class ShopServiceTest extends BaseTest {
 		ShopCategory shopCategory = new ShopCategory();
 		shopCategory.setShopCategoryId(1L);
 		shop.setShopCategory(shopCategory);
-		shop.setShopName("测试的店铺3");
-		shop.setShopDesc("test3");
-		shop.setShopAddr("test3");
+		shop.setShopName("主从同步的测试的店铺3");
+		shop.setShopDesc("主从同步的test3");
+		shop.setShopAddr("主从同步的test3");
 		shop.setPhone("17826801261");
 		shop.setCreateTime(new Date());
 		shop.setLastEditTime(new Date());

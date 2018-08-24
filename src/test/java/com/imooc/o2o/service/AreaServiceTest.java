@@ -6,7 +6,7 @@
  * @author: KeeganRen   
  * @date: 2018年8月14日 下午6:44:43 
  */
-package com.imooc.o2o.service.impl;
+package com.imooc.o2o.service;
 
 import static org.junit.Assert.*;
 
@@ -19,7 +19,7 @@ import com.imooc.o2o.BaseTest;
 import com.imooc.o2o.entity.Area;
 import com.imooc.o2o.service.AreaService;
 
-public class AreaServiceImplTest extends BaseTest {
+public class AreaServiceTest extends BaseTest {
 
 	@Autowired
 	private AreaService areaService;

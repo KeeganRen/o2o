@@ -40,9 +40,9 @@ public class ShopDaoTest extends BaseTest {
 		shop.setOwner(personInfo);
 		shop.setArea(area);
 		shop.setShopCategory(shopCategory);
-		shop.setShopName("测试的店铺");
-		shop.setShopDesc("desc");
-		shop.setShopAddr("adrr");
+		shop.setShopName("测试主从同步的店铺");
+		shop.setShopDesc("主从同步的desc");
+		shop.setShopAddr("主从同步的adrr");
 		shop.setPhone("17826801261");
 		shop.setCreateTime(new Date());
 		shop.setEnableStatus(1);
