@@ -86,4 +86,17 @@ public class ShopDaoTest extends BaseTest {
 		}
 	}
 
+	@Test
+	public void testQueryByShopId() {
+			
+		long shopId=1L;
+		try {
+			Shop effectedshop = shopDao.queryByShopId(shopId);
+			System.out.println(effectedshop.toString());
+			//assertEquals(shopId, effectedshop.getShopId().longValue());
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 }

@@ -27,4 +27,12 @@ public interface ShopDao {
 	 */
 	int updateShop(Shop shop);
 	
+	/**
+	 * 
+	 * @Function: ShopDao.java
+	 * @Description: 根据店铺id查询店铺信息
+	 *
+	 */
+	Shop queryByShopId(long shopId);
+	
 }
