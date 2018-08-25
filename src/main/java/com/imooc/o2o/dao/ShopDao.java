@@ -8,6 +8,8 @@
  */
 package com.imooc.o2o.dao;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.imooc.o2o.entity.Shop;
 
 public interface ShopDao {
@@ -33,6 +35,6 @@ public interface ShopDao {
 	 * @Description: 根据店铺id查询店铺信息
 	 *
 	 */
-	Shop queryByShopId(long shopId);
+	Shop queryByShopId(@Param(value="shopId") long shopId);
 	
 }
