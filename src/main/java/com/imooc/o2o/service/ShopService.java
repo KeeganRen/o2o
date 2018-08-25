@@ -16,6 +16,27 @@ import com.imooc.o2o.exceptions.ShopOperationException;
 
 public interface ShopService {
 
+	/**
+	 * 
+	 * @Function: ShopService.java
+	 * @Description: 添加店铺
+	 *
+	 */
 	ShopExecution addShop(Shop shop, InputStream shopImgInputStream, String fileName) throws ShopOperationException;
 	
+	/**
+	 * 
+	 * @Function: ShopService.java
+	 * @Description: 通过店铺id获取店铺信息
+	 *
+	 */
+	Shop getByShopId(long shopId);
+	
+	/**
+	 * 
+	 * @Function: ShopService.java
+	 * @Description: 更新店铺信息，包括对图像的处理
+	 *
+	 */
+	ShopExecution modifyShop(Shop shop, InputStream shopImgInputStream, String fileName) throws Exception;
 }

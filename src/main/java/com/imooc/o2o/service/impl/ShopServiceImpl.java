@@ -88,4 +88,28 @@ public class ShopServiceImpl implements ShopService {
 		shop.setShopImg(shopImgAddr);
 	}
 
+
+	/** (non-Javadoc)
+	 * @see com.imooc.o2o.service.ShopService#getByShopId(long)  
+	 * @Function: ShopServiceImpl.java
+	 * @Description: 通过店铺id获取店铺信息
+	 */
+	@Override
+	public Shop getByShopId(long shopId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	/** (non-Javadoc)
+	 * @see com.imooc.o2o.service.ShopService#modifyShop(com.imooc.o2o.entity.Shop, java.io.InputStream, java.lang.String)  
+	 * @Function: ShopServiceImpl.java
+	 * @Description: 更新店铺信息，包括对图像的处理
+	 */
+	@Override
+	public ShopExecution modifyShop(Shop shop, InputStream shopImgInputStream, String fileName) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
