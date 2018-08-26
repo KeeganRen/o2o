@@ -129,7 +129,7 @@ public class ShopServiceImpl implements ShopService {
 					return new ShopExecution(ShopStateEnum.INNER_ERROR);
 				} else {
 					shop = shopDao.queryByShopId(shop.getShopId());
-					return new ShopExecution(ShopStateEnum.SUCESS, shop);
+					return new ShopExecution(ShopStateEnum.SUCCESS, shop);
 				}
 			} catch (Exception e) {
 				throw new ShopOperationException("modifyShop error:" + e.getMessage());
