@@ -59,6 +59,7 @@ public class ShopManagementController {
 	@RequestMapping(value="/getshopbyid", method=RequestMethod.GET)
 	@ResponseBody
 	private Map<String, Object> getShopById(HttpServletRequest request) {
+		
 		Map<String, Object> modelMap = new HashMap<String, Object>();
 		Long shopId = HttpServletRequestUtil.getLong(request, "shopId");
 		if (shopId > -1) {
