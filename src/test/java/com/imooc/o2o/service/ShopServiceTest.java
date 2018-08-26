@@ -25,6 +25,7 @@ import com.imooc.o2o.entity.PersonInfo;
 import com.imooc.o2o.entity.Shop;
 import com.imooc.o2o.entity.ShopCategory;
 import com.imooc.o2o.enums.ShopStateEnum;
+import com.imooc.o2o.exceptions.ShopOperationException;
 
 /**   
  * @ClassName: ShopServiceTest.java
@@ -67,6 +68,18 @@ public class ShopServiceTest extends BaseTest {
 		ShopExecution se = shopService.addShop(shop, inputStream, shopImg.getName());
 		assertEquals(ShopStateEnum.CHECK.getState(), se.getState());
 
+	}
+	
+	@Test
+	public void testModifyShop() throws ShopOperationException, FileNotFoundException {
+		
+		Shop shop = new Shop();
+		shop.setShopId(1L);
+		shop.setShopName("修改的店铺名称");
+		File shopImg = new File("C:\\Users\\KeeganRen\\Pictures\\生活.jpg");
+		InputStream inputStream = new FileInputStream(shopImg);
+		ShopExecution shopExecution = shopService.modifyShop(shop, inputStream, "生活.jpg");
+		System.out.println("新的图片地址" + shopExecution.getShop().getShopImg());
 	}
 
 }

@@ -38,5 +38,5 @@ public interface ShopService {
 	 * @Description: 更新店铺信息，包括对图像的处理
 	 *
 	 */
-	ShopExecution modifyShop(Shop shop, InputStream shopImgInputStream, String fileName) throws Exception;
+	ShopExecution modifyShop(Shop shop, InputStream shopImgInputStream, String fileName) throws ShopOperationException;
 }
