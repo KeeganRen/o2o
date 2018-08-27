@@ -11,8 +11,6 @@ package com.imooc.o2o.service.impl;
 import java.io.InputStream;
 import java.util.Date;
 
-import javax.xml.crypto.Data;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -48,6 +46,7 @@ public class ShopServiceImpl implements ShopService {
 		
 		try {
 			// 店铺信息赋初始值
+			// bug:Column 'owner_id' cannot be null
 			shop.setEnableStatus(0);
 			shop.setCreateTime(new Date());
 			shop.setLastEditTime(new Date());

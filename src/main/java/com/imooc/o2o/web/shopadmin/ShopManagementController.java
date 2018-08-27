@@ -213,8 +213,14 @@ public class ShopManagementController {
 		
 		// 2.注册店铺
 		if (shop != null && shopImg != null) {
-			// add session
+			// TODO： add session
+			// bug owner为空导致
 			PersonInfo owner = (PersonInfo) request.getSession().getAttribute("user");
+			// 临时添加垃圾袋吗
+			if (owner == null) {
+				owner = new PersonInfo();
+				owner.setUserId(1L);
+			}
 			shop.setOwner(owner);
 			ShopExecution sExecution;
 			try {

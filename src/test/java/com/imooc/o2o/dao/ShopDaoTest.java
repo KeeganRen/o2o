@@ -11,6 +11,7 @@ package com.imooc.o2o.dao;
 import static org.junit.Assert.*;
 
 import java.util.Date;
+import java.util.List;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -94,6 +95,30 @@ public class ShopDaoTest extends BaseTest {
 			Shop effectedshop = shopDao.queryByShopId(shopId);
 			System.out.println(effectedshop.toString());
 			//assertEquals(shopId, effectedshop.getShopId().longValue());
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	public void testQueryShopList() {
+			
+		try {
+			Shop shopCondition = new Shop();
+			PersonInfo owner = new PersonInfo();
+			owner.setUserId(1L);
+			shopCondition.setOwner(owner);
+			List<Shop> shopList = shopDao.queryShopList(shopCondition, 0, 3);
+			System.out.println("店铺列表的大小：" + shopList.size());
+			
+			int count = shopDao.queryShopCount(shopCondition);
+			System.out.println("店铺总数：" + count);
+
+			ShopCategory sCategory = new ShopCategory();
+			sCategory.setShopCategoryId(2L);
+			shopCondition.setShopCategory(sCategory);
+			int count_new = shopDao.queryShopCount(shopCondition);
+			System.out.println("店铺总数：" + count_new);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
