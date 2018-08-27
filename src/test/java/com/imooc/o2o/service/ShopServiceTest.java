@@ -81,5 +81,23 @@ public class ShopServiceTest extends BaseTest {
 		ShopExecution shopExecution = shopService.modifyShop(shop, inputStream, "生活.jpg");
 		System.out.println("新的图片地址" + shopExecution.getShop().getShopImg());
 	}
-
+	
+	
+	@Test
+	public void testGetShopList() {
+		
+		try {
+			Shop shopCondition = new Shop();
+			ShopCategory shopCategory = new ShopCategory();
+			shopCategory.setShopCategoryId(2L);
+			shopCondition.setShopCategory(shopCategory);
+			ShopExecution sExecution = shopService.getShopList(shopCondition, 0, 2); 
+			System.out.println("店铺列表数 = " + sExecution.getShopList().size());
+			System.out.println("店铺总数 = " + sExecution.getCount());
+			System.out.println("sExecution = " + sExecution.toString());
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
 }

@@ -10,6 +10,7 @@ package com.imooc.o2o.service.impl;
 
 import java.io.InputStream;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,7 @@ import com.imooc.o2o.enums.ShopStateEnum;
 import com.imooc.o2o.exceptions.ShopOperationException;
 import com.imooc.o2o.service.ShopService;
 import com.imooc.o2o.util.ImageUtil;
+import com.imooc.o2o.util.PageCalculator;
 import com.imooc.o2o.util.PathUtil;
 
 @Service
@@ -134,6 +136,28 @@ public class ShopServiceImpl implements ShopService {
 				throw new ShopOperationException("modifyShop error:" + e.getMessage());
 			}
 		}
+	}
+
+
+	/** (non-Javadoc)
+	 * @see com.imooc.o2o.service.ShopService#getShopList(com.imooc.o2o.entity.Shop, int, int)  
+	 * @Function: ShopServiceImpl.java
+	 * @Description: 该函数的功能描述
+	 */
+	@Override
+	public ShopExecution getShopList(Shop shopCondition, int pageIndex, int pageSize) {
+		
+		int rowIndex = PageCalculator.calculateRowIndex(pageIndex, pageSize);
+		List<Shop> shopList = shopDao.queryShopList(shopCondition, rowIndex, pageSize);
+		int count = shopDao.queryShopCount(shopCondition);
+		ShopExecution sExecution = new ShopExecution();
+		if (shopList != null) {
+			sExecution.setShopList(shopList);
+			sExecution.setCount(count);
+		} else {
+			sExecution.setState(ShopStateEnum.INNER_ERROR.getState());
+		}
+		return sExecution;
 	}
 
 }
