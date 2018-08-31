@@ -38,7 +38,6 @@ import com.imooc.o2o.service.ShopCategoryService;
 import com.imooc.o2o.service.ShopService;
 import com.imooc.o2o.util.CodeUtil;
 import com.imooc.o2o.util.HttpServletRequestUtil;
-import com.thoughtworks.xstream.mapper.Mapper.Null;
 
 /**   
  * @ClassName: ShopManagementController.java

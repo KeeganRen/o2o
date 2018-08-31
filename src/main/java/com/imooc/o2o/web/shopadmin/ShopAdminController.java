@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 /**   
  * @ClassName: ShopAdminController.java
- * @Description: 该类的功能描述
+ * @Description: 路由，经SpringMVC拼接链接
  */
 @Controller
 @RequestMapping(value="shopadmin", method= {RequestMethod.GET})
@@ -25,4 +25,8 @@ public class ShopAdminController {
 		return "shop/shopoperation";
 	}
 	
+	@RequestMapping(value="/shoplist")
+	public String shopList() {
+		return "shop/shoplist";
+	}
 }

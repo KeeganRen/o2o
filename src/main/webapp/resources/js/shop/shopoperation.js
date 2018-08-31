@@ -9,7 +9,7 @@ $(function() {
 	var isEdit = shopId ? true : false;
 	// 获取店铺初始信息
 	var initUrl = '/o2o/shopadmin/getshopinitinfo';
-	// 获取店铺管理
+	// 注册店铺
 	var registerShopUrl = '/o2o/shopadmin/registershop';
 	// 根据shopId获取店铺信息
 	var shopInfoUrl = "/o2o/shopadmin/getshopbyid?shopId=" + shopId;
