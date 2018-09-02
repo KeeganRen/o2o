@@ -8,8 +8,6 @@
  */
 package com.imooc.o2o.service;
 
-import static org.junit.Assert.*;
-
 import java.util.List;
 
 import org.junit.Test;
