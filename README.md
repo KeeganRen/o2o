@@ -1,6 +1,8 @@
 # o2o
 easyO2O
 
+JavaWeb菜鸟，跟着教程学习做网站
+
 JDK 1.8
 Spring 4.3.7
 SpringMVC 
