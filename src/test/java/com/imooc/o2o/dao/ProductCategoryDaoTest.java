@@ -12,10 +12,11 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.imooc.o2o.BaseTest;
@@ -25,20 +26,21 @@ import com.imooc.o2o.entity.ProductCategory;
  * @ClassName: ProductCategoryDaoTest.java
  * @Description: 该类的功能描述
  */
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class ProductCategoryDaoTest extends BaseTest {
 
 	@Autowired
 	private ProductCategoryDao productCategoryDao;
 	
 	@Test
-	public void testQueryProductCategoryList() throws Exception {
+	public void testBQueryProductCategoryList() throws Exception {
 		long shopId = 1L;
 		List<ProductCategory> productCategoryList = productCategoryDao.queryProductCategoryList(shopId);
 		System.out.println("该店铺的自定义类别数为:" + productCategoryList.size());		
 	}
 	
 	@Test
-	public void testBatchInsertProductCategory() {
+	public void testABatchInsertProductCategory() {
 
 		try {
 			ProductCategory productCategory = new ProductCategory();
@@ -67,12 +69,12 @@ public class ProductCategoryDaoTest extends BaseTest {
 	}
 	
 	@Test
-	public void testDeleteProductCategory() throws Exception {
+	public void testCDeleteProductCategory() throws Exception {
 		
 		long shopId = 1L;
 		List<ProductCategory> productCategories = productCategoryDao.queryProductCategoryList(shopId);
 		for (ProductCategory pcCategory : productCategories) {
-			if ("小菜".equals(pcCategory.getProductCategoryName())) {
+			if ("小菜".equals(pcCategory.getProductCategoryName()) || "饮品".equals(pcCategory.getProductCategoryName())) {
 				int effectNum = productCategoryDao.deleteProductCategory(pcCategory.getProductCategoryId(), shopId);
 				assertEquals(1, effectNum);
 			}
