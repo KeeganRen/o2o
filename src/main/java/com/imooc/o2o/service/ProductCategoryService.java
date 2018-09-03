@@ -28,6 +28,20 @@ public interface ProductCategoryService {
 	 */
 	List<ProductCategory> getProductCategoryList(long shopId);
 	
-	
+	/**
+	 * 
+	 * @Function: ProductCategoryService.java
+	 * @Description: 批量插入商品类别
+	 *
+	 */
 	ProductCategoryExecution batchAddProductCategory(List<ProductCategory>productCategoryList) throws ProductCategoryOperationException;
+
+
+	/**
+	 * 
+	 * @Function: ProductCategoryService.java
+	 * @Description: 将类别下的商品里的商品类别置空，并删除商品类别
+	 *
+	 */
+	ProductCategoryExecution deleteProductCategory(long productCategoryId, long shopId) throws ProductCategoryOperationException;
 }
