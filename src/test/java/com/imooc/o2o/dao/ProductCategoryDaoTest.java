@@ -12,6 +12,7 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import org.junit.Test;
@@ -63,5 +64,18 @@ public class ProductCategoryDaoTest extends BaseTest {
 			e.printStackTrace();
 		}
 
+	}
+	
+	@Test
+	public void testDeleteProductCategory() throws Exception {
+		
+		long shopId = 1L;
+		List<ProductCategory> productCategories = productCategoryDao.queryProductCategoryList(shopId);
+		for (ProductCategory pcCategory : productCategories) {
+			if ("小菜".equals(pcCategory.getProductCategoryName())) {
+				int effectNum = productCategoryDao.deleteProductCategory(pcCategory.getProductCategoryId(), shopId);
+				assertEquals(1, effectNum);
+			}
+		}
 	}
 }

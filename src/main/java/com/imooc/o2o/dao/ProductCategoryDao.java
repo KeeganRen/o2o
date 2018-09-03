@@ -35,4 +35,12 @@ public interface ProductCategoryDao {
 	 *
 	 */
 	int batchInsertProductCategory(List<ProductCategory> productCategoryList);
+	
+	/**
+	 * 
+	 * @Function: ProductCategoryDao.java
+	 * @Description: 删除产品类别
+	 *
+	 */
+	int deleteProductCategory(@Param("productCategoryId") long productCategoryId, @Param("shopId") long shopId);
 }
