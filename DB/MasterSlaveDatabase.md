@@ -9,8 +9,8 @@
  ###1. 安装需要使用root账号，如果不会设置root账号的请自行google。安装mysql过程中，需要设置mysql的root账号的密码，不要忽略了。
 
     sudo apt install mysql-server
-    apt isntall mysql-client
-    apt install libmysqlclient-dev
+    sudo apt install mysql-client
+    sudo apt install libmysqlclient-dev
 
  ###2. 以上3个软件包安装完成后，使用如下命令查询是否安装成功：
 
@@ -31,6 +31,7 @@ tcp6       0      0 [::]:mysql              [::]:*                  LISTEN      
 
 ###2. 使用root进入mysql命令行，执行如下2个命令，示例中mysql的root账号密码：root
 
+    sudo su
     mysql -uroot -p
     // grant all privileges on 库名.表名 to '用户名'@'IP地址' identified by '密码' with grant option;
     // flush privileges;
@@ -70,15 +71,11 @@ Master MySQL
 [mysqld]
 
 #
-
 # * Basic Settings
-
 #
 
 server-id=1
-
 log-bin=master-bin
-
 log-bin-index=master-bin.index
 
 
@@ -144,6 +141,7 @@ relay-log=slave-relay-bin
     mysql -uroot -p密码
     mysql> show databases;
     mysql> change master to master_host='132.232.121.57',master_port=3306,master_user='repl',master_password='ren',master_log_file='master-bin.000001',master_log_pos=0;
+    # change master to master_host='主库ip',master_port=3306,master_user='repl',master_password='ren',master_log_file='show master status->File',master_log_pos=0;
 
     mysql> start slave; #开启主从同步
     mysql> show databases;
@@ -230,7 +228,6 @@ Master MySQL
 
 Slave MySQL
     mysql -uroot -p密码
-    mysql> show databases;
     mysql> show databases;
 
 ```sh
