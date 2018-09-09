@@ -26,6 +26,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.imooc.o2o.dto.ImageHolder;
 import com.imooc.o2o.dto.ShopExecution;
 import com.imooc.o2o.entity.Area;
 import com.imooc.o2o.entity.PersonInfo;
@@ -174,9 +175,10 @@ public class ShopManagementController {
 			ShopExecution sExecution;
 			try {
 				if (shopImg == null) {
-					sExecution = shopService.modifyShop(shop, null, null);
+					sExecution = shopService.modifyShop(shop, null);
 				} else {
-					sExecution = shopService.modifyShop(shop, shopImg.getInputStream(), shopImg.getOriginalFilename());
+					ImageHolder imageHolder = new ImageHolder(shopImg.getOriginalFilename(), shopImg.getInputStream());
+					sExecution = shopService.modifyShop(shop, imageHolder);
 				}
 				if (sExecution.getState() == ShopStateEnum.SUCCESS.getState()) {
 					modelMap.put("sucess", true);
@@ -277,7 +279,8 @@ public class ShopManagementController {
 			shop.setOwner(owner);
 			ShopExecution sExecution;
 			try {
-				sExecution = shopService.addShop(shop, shopImg.getInputStream(), shopImg.getOriginalFilename());
+				ImageHolder imageHolder = new ImageHolder(shopImg.getOriginalFilename(), shopImg.getInputStream());
+				sExecution = shopService.addShop(shop, imageHolder);
 				if (sExecution.getState() == ShopStateEnum.CHECK.getState()) {
 					modelMap.put("sucess", true);
 					// 该用户可以操作的店铺列表
