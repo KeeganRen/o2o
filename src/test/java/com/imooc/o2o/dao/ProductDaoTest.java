@@ -10,9 +10,10 @@ package com.imooc.o2o.dao;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
-import org.apache.ibatis.annotations.Param;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
@@ -21,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.imooc.o2o.BaseTest;
 import com.imooc.o2o.entity.Product;
 import com.imooc.o2o.entity.ProductCategory;
+import com.imooc.o2o.entity.ProductImg;
 import com.imooc.o2o.entity.Shop;
 
 /**   
@@ -36,12 +38,22 @@ public class ProductDaoTest extends BaseTest {
 	@Autowired
 	private ProductImgDao productImgDao;
 	
+	// TODO:
+	/// mysql自增列重置
+	// alter table o2o.tb_product auto_increment=1; 
+	// 由于存在自增主键，会导致报错
 	@Test
 	public void testAInsertProduct() throws Exception {
 		Shop shop1 = new Shop();
 		shop1.setShopId(1L);
+		Shop shop2 = new Shop();
+		shop2.setShopId(2L);
 		ProductCategory pCategory1 = new ProductCategory();
-		pCategory1.setProductCategoryId(1L);
+		pCategory1.setProductCategoryId(2L);
+		ProductCategory pCategory2 = new ProductCategory();
+		pCategory2.setProductCategoryId(3L);
+		ProductCategory pCategory3 = new ProductCategory();
+		pCategory3.setProductCategoryId(4L);
 		Product product1 = new Product();
 		product1.setProductName("testName1");
 		product1.setProductDesc("testDesc1");
@@ -52,6 +64,7 @@ public class ProductDaoTest extends BaseTest {
 		product1.setLastEditTime(new Date());
 		product1.setShop(shop1);
 		product1.setProductCategory(pCategory1);
+		
 		Product product2 = new Product();
 		product2.setProductName("testName2");
 		product2.setProductDesc("testDesc2");
@@ -61,7 +74,7 @@ public class ProductDaoTest extends BaseTest {
 		product2.setCreateTime(new Date());
 		product2.setLastEditTime(new Date());
 		product2.setShop(shop1);
-		product2.setProductCategory(pCategory1);
+		product2.setProductCategory(pCategory2);
 		Product product3 = new Product();
 		product3.setProductName("testName3");
 		product3.setProductDesc("testDesc3");
@@ -70,8 +83,8 @@ public class ProductDaoTest extends BaseTest {
 		product3.setEnableStatus(0);
 		product3.setCreateTime(new Date());
 		product3.setLastEditTime(new Date());
-		product3.setShop(shop1);
-		product3.setProductCategory(pCategory1);
+		product3.setShop(shop2);
+		product3.setProductCategory(pCategory3);
 		
 		int effectedNum1 = productDao.insertProduct(product1);
 		assertEquals(1, effectedNum1);
@@ -82,28 +95,77 @@ public class ProductDaoTest extends BaseTest {
 	}
 	
 	@Test
-	public void testBUpdateProduct() throws Exception {
+	public void testBQueryProductList() throws Exception {
+		Product product = new Product();
+		List<Product> products = productDao.queryProductList(product, 0, 3);
+		assertEquals(3, products.size());
+		int count = productDao.queryProductCount(product);
+		assertEquals(3, count);
+		product.setProductName("testName1");
+		products = productDao.queryProductList(product, 0, 3);
+		assertEquals(1, products.size());
+		
+		Shop shop = new Shop();
+		shop.setShopId(2L);
+		Product product2 = new Product();
+		product2.setShop(shop);
+		products = productDao.queryProductList(product2, 0, 3);
+		assertEquals(1, products.size());
+		count = productDao.queryProductCount(product2);
+		assertEquals(1, count);
+	}
+	
+	@Test
+	public void testCQueryProductByProductId() throws Exception {
+		long productId = 1L;
+		ProductImg productImg1 = new ProductImg();
+		productImg1.setImgAddr("imgaddr1");
+		productImg1.setImgDesc("testImgaddr1");
+		productImg1.setPriority(1);
+		productImg1.setCreateTime(new Date());
+		productImg1.setProductId(productId);
+		ProductImg productImg2 = new ProductImg();
+		productImg2.setImgAddr("imgaddr2");
+		productImg2.setImgDesc("testImgaddr2");
+		productImg2.setPriority(1);
+		productImg2.setCreateTime(new Date());
+		productImg2.setProductId(productId);
+		List<ProductImg> productImgList = new ArrayList<ProductImg>();
+		productImgList.add(productImg1);
+		productImgList.add(productImg2);
+		
+		int effectedNum = productImgDao.batchInsertProductImg(productImgList);
+		assertEquals(2, effectedNum);
+		Product product = productDao.queryProductByProductId(productId);
+		assertEquals(2, product.getProductImgList().size());
+		effectedNum = productImgDao.deleteProductImgByProductId(productId);
+		assertEquals(2, effectedNum);
+	}
+	
+	@Test
+	public void testDUpdateProduct() throws Exception {
 		Shop shop1 = new Shop();
 		shop1.setShopId(1L);
-		ProductCategory pCategory1 = new ProductCategory();
-		pCategory1.setProductCategoryId(1L);
-		Product product3 = new Product();
-		product3.setProductId(3L);
-		product3.setImgAddr("testAddr3");
-		product3.setPriority(13);
-		product3.setCreateTime(new Date());
-		product3.setLastEditTime(new Date());
-		product3.setShop(shop1);
-		product3.setProductCategory(pCategory1);
-		int effectedNum3 = productDao.updateProduct(product3);
+		Product product = new Product();
+		product.setShop(shop1);
+		product.setProductId(1L);
+		product.setProductName("测试1");
+		int effectedNum3 = productDao.updateProduct(product);
 		assertEquals(1, effectedNum3);
 	}
 	
 	@Test
-	public void testCDeleteProduct() throws Exception {
-		long productId = 3L;
-		long shopId = 1L;
-		int effectedNum3 = productDao.deleteProduct(productId, shopId);
+	public void testEDeleteProduct() throws Exception {
+		long productId1 = 1L;
+		long productId2 = 2L;
+		long productId3 = 3L;
+		long shopId1 = 1L;
+		long shopId2 = 2L;
+		int effectedNum1 = productDao.deleteProduct(productId1, shopId1);
+		assertEquals(1, effectedNum1);
+		int effectedNum2 = productDao.deleteProduct(productId2, shopId1);
+		assertEquals(1, effectedNum2);
+		int effectedNum3 = productDao.deleteProduct(productId3, shopId2);
 		assertEquals(1, effectedNum3);
 	}
 }

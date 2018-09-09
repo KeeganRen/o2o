@@ -64,7 +64,6 @@
 			create_time,
 			last_edit_time,
 			enable_status,
-			point,
 			product_category_id,
 			shop_id
 		FROM tb_product
@@ -121,7 +120,6 @@
 			p.create_time,
 			p.last_edit_time,
 			p.enable_status,
-			p.point,
 			p.product_category_id,
 			p.shop_id,
 			pm.product_img_id,
