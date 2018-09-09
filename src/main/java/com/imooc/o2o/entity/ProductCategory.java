@@ -41,6 +41,9 @@ public class ProductCategory {
 	// 创建时间
 	private Date createTime;
 
+	// 最后修改时间
+	private Date lastEditTime;
+	
 	public Long getProductCategoryId() {
 		return productCategoryId;
 	}
@@ -80,13 +83,22 @@ public class ProductCategory {
 	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
 	}
+	
+	public Date getLastEditTime() {
+		return lastEditTime;
+	}
+
+	public void setLastEditTime(Date lastEditTime) {
+		this.lastEditTime = lastEditTime;
+	}
 
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("ProductCategory [productCategoryId=").append(productCategoryId).append(", shopId=")
 				.append(shopId).append(", productCategoryName=").append(productCategoryName).append(", priority=")
-				.append(priority).append(", createTime=").append(createTime).append("]");
+				.append(priority).append(", createTime=").append(createTime).append(", lastEditTime=")
+				.append(lastEditTime).append("]");
 		return builder.toString();
 	}
 	
