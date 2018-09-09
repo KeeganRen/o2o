@@ -27,7 +27,7 @@ public interface ProductService {
 	 * @Description: 添加商品信息以及图片处理
 	 *
 	 */
-	ProductExecution addProduct(Product product, ImageHolder thumbnail, List<ImageHolder> productImgList)
+	ProductExecution addProduct(Product product, ImageHolder thumbnail, List<ImageHolder> productImgHolderList)
 			throws ProductOperationException;
 	
 }

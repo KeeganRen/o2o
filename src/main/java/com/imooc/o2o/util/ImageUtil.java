@@ -81,6 +81,27 @@ public class ImageUtil {
 		return relativeAddr;
 	}
 	
+	// 生成缩略图
+	public static String generateNormalThumbnail(ImageHolder thumbnail, String targetAddr) {
+		
+		String realFileName = getRandomFileName();
+		String extension = getFileExtension(thumbnail.getImageName());
+		makeDirPath(targetAddr);
+		String relativeAddr = targetAddr + realFileName + extension;
+		File dest = new File(PathUtil.getImageBasePath() + relativeAddr);
+		
+		try {
+			Thumbnails.of(thumbnail.getImage()).size(337, 640)
+			.watermark(Positions.BOTTOM_RIGHT, ImageIO.read(new File(basePath + "watermark.png")), 0.25f)
+			.outputQuality(0.9f).toFile(dest);
+		} catch (IOException e) {
+			e.printStackTrace();
+			throw new RuntimeException("创建缩略图失败：" + e.toString());
+		}
+
+		return relativeAddr;
+	}
+	
 	// 创建文件夹
 	private static void makeDirPath(String targetAddr) {
 		String realFileParentPath = PathUtil.getImageBasePath() + targetAddr;
