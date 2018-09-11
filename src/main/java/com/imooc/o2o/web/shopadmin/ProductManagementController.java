@@ -21,14 +21,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.multipart.MultipartRequest;
-import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.imooc.o2o.dto.ImageHolder;
+import com.imooc.o2o.dto.ProductExecution;
 import com.imooc.o2o.entity.Product;
+import com.imooc.o2o.entity.Shop;
+import com.imooc.o2o.enums.ProductStateEnum;
+import com.imooc.o2o.exceptions.ProductOperationException;
 import com.imooc.o2o.service.ProductService;
 import com.imooc.o2o.util.CodeUtil;
 import com.imooc.o2o.util.HttpServletRequestUtil;
@@ -97,7 +99,39 @@ public class ProductManagementController {
 		}
 		
 		// TODO：获取前端传入的表单String流并将其转换成Product实体类
+		try {
+			product = mapper.readValue(productStr, Product.class);
+		} catch (Exception e) {
+			modelMap.put("success", false);
+			modelMap.put("errMsg", e.toString());
+			return modelMap;
+		}
 		
+		// 若Product信息，缩略图以及详情图列表为非空，则开始进行商品添加操作
+		if(product != null && thumbnail != null && productImgList.size() > 0) {
+			try {
+				// 从session中获取当前店铺的ID并赋值给product，减少对前端数据的依赖
+				Shop currentShop = (Shop) request.getSession().getAttribute("currentShop");
+				Shop shop = new Shop();
+				shop.setShopId(currentShop.getShopId());
+				product.setShop(shop);
+				// 执行添加操作
+				ProductExecution peExecution = productService.addProduct(product, thumbnail, productImgList);
+				if (peExecution.getState() == ProductStateEnum.SUCCESS.getState()) {
+					modelMap.put("success", true);
+				} else {
+					modelMap.put("success", false);
+					modelMap.put("errMsg", peExecution.getStateInfo());
+				}
+			} catch (ProductOperationException e) {
+				modelMap.put("success", false);
+				modelMap.put("errMsg", e.toString());
+				return modelMap;
+			}
+		} else {
+			modelMap.put("success", false);
+			modelMap.put("errMsg", "请输入商品信息");
+		}
 		return modelMap;
 	}
 }
