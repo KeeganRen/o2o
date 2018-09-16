@@ -40,7 +40,7 @@ $(function(){
 				// 生成前端的HTML商品类别列表，并默认选择编辑前的商品类别
 				optionArr.map(function(item, index){
 					var isSelect = optionSelected === item.productCategoryId ? 'selected' : '';
-					optionHtml += '<opyion data-value="'
+					optionHtml += '<option data-value="'
 						+ item.productCategoryId
 						+ '"'
 						+ isSelect
@@ -83,7 +83,7 @@ $(function(){
 		// 创建商品json对象，并从表单里面获取对应的属性值
 		var product = {};
 		product.productName = $('#product-name').val();
-		product.productDesc = $('product-desc').val();
+		product.productDesc = $('#product-desc').val();
 		product.priority = $('#priority').val();
 		product.normalPrice = $('#normal-price').val();
 		product.promotionPrice = $('#promotion-price').val();
@@ -99,7 +99,7 @@ $(function(){
 		// 获取缩略图文件流
 		var thumbnail = $('#small-img')[0].files[0];
 		// 生成表单对象，用于接收参数并传递给后台
-		var fomData = new FormData();
+		var formData = new FormData();
 		formData.append('thumbnail', thumbnail);
 		// 遍历商品详情图控制，获取文件流
 		$('.detail-img').map(function(index, item){
