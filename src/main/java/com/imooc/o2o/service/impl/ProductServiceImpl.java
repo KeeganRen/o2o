@@ -133,4 +133,82 @@ public class ProductServiceImpl implements ProductService {
 			}
 		}
 	}
+
+	/** (non-Javadoc)
+	 * @see com.imooc.o2o.service.ProductService#getProductById(long)  
+	 * @Function: ProductServiceImpl.java
+	 * @Description: 通过商品ID查询唯一的商品信息
+	 */
+	@Override
+	public Product getProductById(long productId) {
+		return productDao.queryProductByProductId(productId);
+	}
+
+	/** (non-Javadoc)
+	 * @see com.imooc.o2o.service.ProductService#modifyProduct(com.imooc.o2o.entity.Product, com.imooc.o2o.dto.ImageHolder, java.util.List)  
+	 * @Function: ProductServiceImpl.java
+	 * @Description: 修改商品信息以及图片处理
+	 * 
+	 * 1.若缩略图参数有值，则处理缩略图；若原本存有缩略图则先删除原缩略图再添加新图，之后获取缩略图的相对路径，并赋值给product
+	 * 2.若商品详情图列表参数有值，则对商品详情图列表进行同样的操作
+	 * 3.将tb_product_img下面的该商品原先的商品详情图记录全部清除
+	 * 4.更细tb_product的信息
+	 * 
+	 */
+	@Override
+	@Transactional
+	public ProductExecution modifyProduct(Product product, ImageHolder thumbnail,
+			List<ImageHolder> productImgHolderList) throws ProductOperationException {
+		
+		// 空值判断
+		if (product != null && product.getShop() != null && product.getShop().getShopId() != null) {
+			// 设置商品默认属性
+			product.setLastEditTime(new Date());
+			// 若商品缩略图不为空且原有缩略图不为空则删除原有缩略图并添加新图
+			if (thumbnail != null) {
+				// 读取原有信息，因为原本信息中存在原图地址
+				Product tempProduct = productDao.queryProductByProductId(product.getProductId());
+				if(tempProduct.getImgAddr() != null) {
+					ImageUtil.deleteFileOrPath(tempProduct.getImgAddr());
+				}
+				addThumbnail(product, thumbnail);
+			}
+			// 如果有新存入的商品详情图，则将原本的删除，并添加新图片
+			if (productImgHolderList != null && productImgHolderList.size() > 0) {
+				deleteProductImgList(product.getProductId());
+				addProductImgList(product, productImgHolderList);
+			}
+			
+			try {
+				// 更新商品信息
+				int effectedNum = productDao.updateProduct(product);
+				if (effectedNum <= 0) {
+					throw new ProductOperationException("更新商品信息失败");
+				}
+				return new ProductExecution(ProductStateEnum.SUCCESS, product);
+			} catch (Exception e) {
+				throw new ProductOperationException("更新商品信息失败" + e.toString());
+			}
+		} else {
+			return new ProductExecution(ProductStateEnum.EMPTY);
+		}
+	}
+	
+	/**
+	 * 
+	 * @Function: ProductServiceImpl.java
+	 * @Description: 删除某个商品下的所有详情图
+	 *
+	 */
+	private void deleteProductImgList(long productId) {
+		// 根据productId获取原来的图片
+		List<ProductImg> productImgs = productImgDao.queryProductImgList(productId);
+		// 删除旧图片
+		for (ProductImg productImg : productImgs) {
+			ImageUtil.deleteFileOrPath(productImg.getImgAddr());
+		}
+		// 删除数据库中旧图片的信息
+		productImgDao.deleteProductImgByProductId(productId);
+	}
+	
 }

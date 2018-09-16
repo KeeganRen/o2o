@@ -30,4 +30,19 @@ public interface ProductService {
 	ProductExecution addProduct(Product product, ImageHolder thumbnail, List<ImageHolder> productImgHolderList)
 			throws ProductOperationException;
 	
+	/**
+	 * 
+	 * @Function: ProductService.java
+	 * @Description: 通过商品ID查询唯一的商品信息
+	 *
+	 */
+	Product getProductById(long productId);
+	
+	/**
+	 * 
+	 * @Function: ProductService.java
+	 * @Description: 修改商品信息以及图片处理
+	 *
+	 */
+	ProductExecution modifyProduct(Product product, ImageHolder thumbnail, List<ImageHolder> productImgHolderList) throws ProductOperationException;
 }
