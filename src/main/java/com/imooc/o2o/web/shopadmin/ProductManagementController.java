@@ -142,7 +142,7 @@ public class ProductManagementController {
 	}
 	
 	/**
-	 * 
+	 * http://localhost:8080/o2o/shopadmin/getproductbyid?productId=1
 	 * @Function: ProductManagementController.java
 	 * @Description: 通过商品id获取商品信息
 	 *
@@ -164,6 +164,40 @@ public class ProductManagementController {
 			modelMap.put("success", false);
 			modelMap.put("errMsg", "empty productId");
 		}
+		
+		return modelMap;
+	}
+	
+	/**
+	 * 
+	 * @Function: ProductManagementController.java
+	 * @Description: 商品编辑
+	 *
+	 */
+	@RequestMapping(value="/modifyproduct", method = RequestMethod.POST)
+	@ResponseBody
+	private Map<String, Object> modifyProduct(HttpServletRequest request) {
+		Map<String, Object> modelMap = new HashMap<String, Object>();
+		
+		// 是商品编辑时调用还是上下架时调用
+		// 若为前者则进行验证码判断，后者则跳过验证码判断
+		boolean statusChange = HttpServletRequestUtil.getBoolean(request, "statusChange");
+		// 验证码判断
+		if (!statusChange && !CodeUtil.chechVerifyCode(request)) {
+			modelMap.put("success", false);
+			modelMap.put("errMsg", "输入了错误的验证码");
+			return modelMap;
+		}
+
+		// 接收前端参数的变量的初始化，包括商品、缩略图、详情图列表实体类
+		ObjectMapper mapper = new ObjectMapper();
+		Product product = null;
+		ImageHolder thumbnail = null;
+		List<ImageHolder> productImgList = new ArrayList<ImageHolder>();
+		CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(request.getSession().getServletContext());
+		// 若请求中存在文件流，则取出相关的文件
+		
+		// TODO: 未完待续
 		
 		return modelMap;
 	}
