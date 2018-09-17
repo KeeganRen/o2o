@@ -43,7 +43,6 @@ public interface ProductDao {
 	 *
 	 */
 	Product queryProductByProductId(@Param("productId") long productId);
-	Product queryProductById(@Param("productId") long productId);
 	
 	/**
 	 * 
