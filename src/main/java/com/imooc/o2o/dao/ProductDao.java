@@ -42,7 +42,8 @@ public interface ProductDao {
 	 * @Description: 查询对应商品的总数
 	 *
 	 */
-	Product queryProductByProductId(long productId);
+	Product queryProductByProductId(@Param("productId") long productId);
+	Product queryProductById(@Param("productId") long productId);
 	
 	/**
 	 * 
