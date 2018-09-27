@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.MultipartRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
@@ -31,6 +32,7 @@ import com.imooc.o2o.dto.ImageHolder;
 import com.imooc.o2o.dto.ProductExecution;
 import com.imooc.o2o.entity.Product;
 import com.imooc.o2o.entity.ProductCategory;
+import com.imooc.o2o.entity.ProductImg;
 import com.imooc.o2o.entity.Shop;
 import com.imooc.o2o.enums.ProductStateEnum;
 import com.imooc.o2o.exceptions.ProductOperationException;
