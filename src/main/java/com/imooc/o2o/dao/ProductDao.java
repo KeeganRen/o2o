@@ -16,7 +16,7 @@ import com.imooc.o2o.entity.Product;
 
 /**   
  * @ClassName: ProductDao.java
- * @Description: 该类的功能描述
+ * @Description: 
  */
 public interface ProductDao {
 
