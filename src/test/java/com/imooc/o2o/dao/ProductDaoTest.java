@@ -144,7 +144,7 @@ public class ProductDaoTest extends BaseTest {
 	
 	@Test
 	public void testCQueryProductById() throws Exception {
-		long productId = 8L;
+		long productId = 1L;
 		Product product = productDao.queryProductByProductId(productId);
 		assertEquals(2, product.getProductImgList().size());
 	}
