@@ -11,7 +11,6 @@ package com.imooc.o2o.dto;
 import java.util.List;
 
 import com.imooc.o2o.entity.Product;
-import com.imooc.o2o.enums.ProductCategoryStateEnum;
 import com.imooc.o2o.enums.ProductStateEnum;
 
 /**   

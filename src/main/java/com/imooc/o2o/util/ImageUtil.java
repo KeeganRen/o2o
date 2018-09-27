@@ -18,14 +18,7 @@ import java.util.Random;
 
 import javax.imageio.ImageIO;
 
-import org.apache.jasper.tagplugins.jstl.core.Out;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.multipart.commons.CommonsMultipartFile;
-import org.springframework.web.multipart.commons.CommonsMultipartResolver;
-
 import com.imooc.o2o.dto.ImageHolder;
-import com.imooc.o2o.entity.PersonInfo;
-
 import net.coobird.thumbnailator.Thumbnails;
 import net.coobird.thumbnailator.geometry.Positions;
 

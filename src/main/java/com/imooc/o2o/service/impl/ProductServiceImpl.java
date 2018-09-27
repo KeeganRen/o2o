@@ -8,7 +8,6 @@
  */
 package com.imooc.o2o.service.impl;
 
-import java.awt.Image;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
