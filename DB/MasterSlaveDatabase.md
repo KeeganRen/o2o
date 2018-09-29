@@ -258,4 +258,6 @@ Slave MySQL
 
     show slave status \G;的Read_Master_Log_Pos
     
-#五
+#五、主从同步故障修复
+
+ 暂空
