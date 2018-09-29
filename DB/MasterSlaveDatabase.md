@@ -6,17 +6,17 @@
 
 ##一、安装mysql
 
- ###1. 安装需要使用root账号，如果不会设置root账号的请自行google。安装mysql过程中，需要设置mysql的root账号的密码，不要忽略了。
+###1. 安装需要使用root账号，如果不会设置root账号的请自行google。安装mysql过程中，需要设置mysql的root账号的密码，不要忽略了。
 
     sudo apt install mysql-server
     sudo apt install mysql-client
     sudo apt install libmysqlclient-dev
 
- ###2. 以上3个软件包安装完成后，使用如下命令查询是否安装成功：
+###2. 以上3个软件包安装完成后，使用如下命令查询是否安装成功：
 
     sudo netstat -tap | grep mysql 
 
- ###查询结果如下图所示，表示安装成功。
+###查询结果如下图所示，表示安装成功。
 
     root@xyz:~# netstat -tap | grep mysql
 
@@ -257,3 +257,5 @@ Slave MySQL
 ###对比show master status;的Position 与
 
     show slave status \G;的Read_Master_Log_Pos
+    
+#五
