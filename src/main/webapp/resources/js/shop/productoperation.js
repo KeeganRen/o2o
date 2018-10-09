@@ -102,13 +102,14 @@ $(function(){
 		var formData = new FormData();
 		formData.append('thumbnail', thumbnail);
 		// 遍历商品详情图控制，获取文件流
-		$('.detail-img').map(function(index, item){
-			// 判断该控件是否已选择了文件
-			if ($('.detail-img')[index].files.length > 0){
-				// 将第i个文件流赋值给key为productImg的表单键值对中
-				formData.append('productImg' + index, $('.detail-img')[index].files[0]);
-			}
-		});
+		$('.detail-img').map(
+				function(index, item){
+					// 判断该控件是否已选择了文件
+					if ($('.detail-img')[index].files.length > 0){
+						// 将第i个文件流赋值给key为productImg的表单键值对中
+						formData.append('productImg' + index, $('.detail-img')[index].files[0]);
+					}
+				});
 		// 将product json对象转换成字符流保存至表单对象key为productStr的键值对中
 		formData.append('productStr', JSON.stringify(product));
 		// 获取表单里输入的验证码
@@ -120,13 +121,13 @@ $(function(){
 		formData.append("verifyCodeActual", verifyCodeActual);
 		// 将数据提交至后台处理相关操作
 		$.ajax({
-			url:productPostUrl,
-			type:'POST',
-			data:formData,
-			contentType:false,
-			processData:false,
-			cache:false,
-			success:function(data){
+			url : productPostUrl,
+			type : 'POST',
+			data : formData,
+			contentType : false,
+			processData : false,
+			cache : false,
+			success : function(data) {
 				if(data.success){
 					$.toast('提交成功！');
 					$('#captcha_img').click();

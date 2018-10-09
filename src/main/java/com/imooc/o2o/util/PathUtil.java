@@ -22,7 +22,7 @@ public class PathUtil {
 		if (os.toLowerCase().startsWith("win")) {
 			basePath = "G:/projectdev/image/";
 		} else {
-			basePath = "/home/ren/image/";
+			basePath = "/Users/keegan/Programs/JavaWeb/Git/image/";
 		}
 		basePath = basePath.replace("/", separator);
 		return basePath;

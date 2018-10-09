@@ -184,6 +184,7 @@ public class ProductManagementController {
 	}
 	
 	/**
+	 * http://localhost:8080/o2o/shopadmin/shopmanagement?shopId=1
 	 * http://localhost:8080/o2o/shopadmin/productoperation?productId=1
 	 * @Function: ProductManagementController.java
 	 * @Description: 商品编辑
