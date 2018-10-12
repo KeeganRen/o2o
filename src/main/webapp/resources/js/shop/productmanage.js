@@ -16,7 +16,7 @@ $(function() {
 		//从后台获取此店铺的商品列表
 		$.getJSON(listUrl, function(data) {
 			if (data.success) {
-				var productlist = data.productlist;
+				var productList = data.productList;
 				var tempHtml = '';
 				// 遍历每条商品信息，拼接成一行进行显示，列信息如下：
 				// 商品名称、优先级、上架/下架（含productId）、编辑按钮（含productId）、预览（含productId）
@@ -36,12 +36,12 @@ $(function() {
 							+ '<div class="col-33">'
 								+ item.productName
 							+ '</div>'
-							+ '<div class="col-20">'
+							+ '<div class="col-15">'
 								+ item.priority
 							+ '</div>'
-							+ '<div class="col-40">'
+							+ '<div class="col-45">'
 								+ '<a href="#" class="edit" data-id=">' + item.productId + '" data-status"' + item.enableStatus + '">编辑</a>'
-								+ '<a href="#" class="status" data-id=">' + item.productId + '" data-status"' + contraryStatus + '">' + testOp + '</a>'
+								+ '<a href="#" class="status" data-id=">' + item.productId + '" data-status"' + contraryStatus + '">' + textOp + '</a>'
 								+ '<a href="#" class="preview" data-id=">' + item.productId + '" data-status"' + item.enableStatus + '">预览</a>'
 							+ '</div>'
 						+ '</div>'
