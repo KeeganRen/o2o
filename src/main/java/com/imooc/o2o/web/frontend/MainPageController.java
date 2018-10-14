@@ -27,6 +27,8 @@ public class MainPageController {
 	
 	/**
 	 * 初始化前端展示系统的主页信息，包括获取一级店铺类别列表以及头条列表
+	 * http://localhost:8080/o2o/frontend/listmainpageinfo
+	 * 
 	 * @return
 	 */
 	@RequestMapping(value="/listmainpageinfo", method = RequestMethod.GET)
