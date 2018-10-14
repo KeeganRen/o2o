@@ -65,6 +65,27 @@ create table `tb_head_line`(
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `tb_local_auth`
+--
+
+DROP TABLE IF EXISTS `tb_local_auth`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tb_local_auth` (
+  `local_auth_id` int(10) NOT NULL AUTO_INCREMENT,
+  `user_id` int(10) DEFAULT NULL,
+  `user_name` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
+  `password` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
+  `create_time` datetime DEFAULT NULL,
+  `last_edit_time` datetime DEFAULT NULL,
+  PRIMARY KEY (`local_auth_id`),
+  UNIQUE KEY `uk_local_profile` (`user_name`),
+  KEY `fk_local_profile` (`user_id`),
+  CONSTRAINT `fk_local_profile` FOREIGN KEY (`user_id`) REFERENCES `tb_person_info` (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `tb_person_info`
 --
 
