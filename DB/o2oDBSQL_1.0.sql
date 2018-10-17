@@ -64,6 +64,16 @@ create table `tb_head_line`(
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
+LOCK TABLES `tb_head_line` WRITE;
+/*!40000 ALTER TABLE `tb_head_line` DISABLE KEYS */;
+INSERT INTO `tb_head_line` VALUES 
+(11,'1','1','/upload/item/headtitle/2017061320315746624.jpg',1,1,'2017-06-13 20:31:57','2017-06-13 20:31:57'),
+(12,'2','2','/upload/item/headtitle/2017061320371786788.jpg',2,1,'2017-06-13 20:37:17','2017-06-13 20:37:17'),
+(14,'3','3','/upload/item/headtitle/2017061320393452772.jpg',3,1,'2017-06-13 20:39:34','2017-06-13 20:39:34'),
+(15,'4','4','/upload/item/headtitle/2017061320400198256.jpg',4,1,'2017-06-13 20:40:01','2017-06-13 20:40:01');
+/*!40000 ALTER TABLE `tb_head_line` ENABLE KEYS */;
+UNLOCK TABLES;
+
 --
 -- Table structure for table `tb_local_auth`
 --
