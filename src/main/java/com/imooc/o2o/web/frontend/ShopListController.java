@@ -93,6 +93,7 @@ public class ShopListController {
 	 * 获取指定查询条件下的店铺列表
 	 * 
 	 * http://localhost:8080/o2o/frontend/listshops?parentId=12&pageSize=3&pageIndex=1
+	 * http://localhost:8080/o2o/frontend/listshops?parentId=12&pageSize=3&pageIndex=1&shopName=奶茶
 	 * 
 	 * @return
 	 */
