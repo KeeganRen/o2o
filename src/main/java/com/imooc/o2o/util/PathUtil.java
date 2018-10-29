@@ -22,7 +22,7 @@ public class PathUtil {
 		if (os.toLowerCase().startsWith("win")) {
 			basePath = "G:/projectdev/image/";
 		} else {
-			basePath = "/Users/keegan/Programs/JavaWeb/Git/image/";
+			basePath = "/Users/keegan/Programs/JavaWeb/Git/image";
 		}
 		basePath = basePath.replace("/", separator);
 		return basePath;
@@ -30,7 +30,7 @@ public class PathUtil {
 	
 	// 店铺图片存储路径
 	public static String getShopImagePath(long shopId) {
-		String imagePath = "upload/item/shop/" + shopId + "/";
+		String imagePath = "/upload/item/shop/" + shopId + "/";
 		return imagePath.replace("/", separator);
 	}
 	
