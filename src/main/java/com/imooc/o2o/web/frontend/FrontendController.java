@@ -19,6 +19,7 @@ public class FrontendController {
 	
 	/**
 	 * 商品列表页路由
+	 * http://localhost:8080/o2o/frontend/shoplist?parentId=10
 	 * @return
 	 */
 	@RequestMapping(value = "/shoplist", method = RequestMethod.GET)
