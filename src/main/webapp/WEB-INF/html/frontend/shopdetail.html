@@ -20,7 +20,7 @@
 				<a class="button button-link button-nav pull-left" external href="#" onClick="javascript :history.back(-1);" data-transition='slide-out'>
 					<span class="icon icon-left"></span> 返回
 				</a>
-				<h1 class="title">店铺详情</h1>
+				<h1 class="title" id="shop-name">店铺详情</h1> <!-- id="shop-name" 用于动态的绑定店铺名字 -->
 			</header>
 			<nav class="bar bar-tab">
 				<a class="tab-item" href="/o2o/frontend/index" external> 
@@ -44,18 +44,19 @@
 								<p class="color-gray">
 									<span id="shop-update-time"></span>
 								</p>
-								<p id="shop-name"></p>
 								<p id="shop-desc"></p>
-								<p id="shop-addr"></p>
-								<p id="shop-phone"></p>
 							</div>
 						</div>
 						<div class="card-footer">
+							<span id="shop-addr"></span>
+							<span id="shop-phone"></span>
+							<span id="shop-name"></span>
 							<!-- <a href="#" class="link">赞</a> -->
 							<!-- <a href="#" class="link">更多</a> -->
 						</div>
 					</div>
 				</div>
+				<!-- 商品类别列表展示区 -->
 				<div class="shopdetail-button-div" id="shopdetail-button-div">
 					<!-- <a href="#" class="button">所有货物</a>
                         <a href="#" class="button">吃的</a>
@@ -64,6 +65,7 @@
                         <a href="#" class="button">Usual Button 1</a>
                         <a href="#" class="button">Usual Button 1</a> -->
 				</div>
+				<!-- 商品名字搜索区 -->
 				<div class="detail-search">
 					<div class="searchbar">
 						<a class="searchbar-cancel">取消</a>
@@ -73,6 +75,7 @@
 						</div>
 					</div>
 				</div>
+				<!-- 商品列表展示区 -->
 				<div class="list-div">
 					<!-- <div class="card">
                             <div class="card-header">传统火锅店</div>

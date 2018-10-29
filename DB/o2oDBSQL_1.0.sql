@@ -169,6 +169,24 @@ create table `tb_product`(
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
+LOCK TABLES `tb_product` WRITE;
+/*!40000 ALTER TABLE `tb_product` DISABLE KEYS */;
+INSERT INTO `tb_product` 
+VALUES (4,'美式咖啡','一丝醇香，流连忘返','/upload/item/shop/15/2017060523302118864.jpg','12','11',12,'2017-06-05 23:30:21','2017-06-05 23:49:34',1,NULL,15),
+	   (5,'转让八成新XX牌小车','诚心转让八成新XX牌小车，有意者请连续8866666','/upload/item/shop/15/2017060523485289817.jpg','100000','60000',100,'2017-06-05 23:48:52','2017-06-05 23:48:52',1,9,15),
+	   (6,'转让电瓶车一辆','转让电瓶车一辆，可当面看车，电话：1111222','/upload/item/shop/15/2017060608490188656.jpg','3000','1200',99,'2017-06-06 08:49:01','2017-06-06 08:50:57',1,9,15),
+	   (7,'转让半新旧男装摩托车一辆','转让半新旧男装摩托车一辆，当面验车，电话：3333666','/upload/item/shop/15/2017060608502085437.jpg','8000','3000',98,'2017-06-06 08:50:20','2017-06-06 08:51:19',1,9,15),
+	   (8,'大量二手书籍转让','大量二手书籍转让，电话详谈，或上门看书。联系电话：5556666   地址：东苑XX楼','/upload/item/shop/16/2017060608574074561.jpg','0','0',100,'2017-06-06 08:57:40','2017-06-06 08:57:40',1,10,16),
+	   (9,'<十万个为什么>','出手一本《十万个为什么》，8成新，想要的可以联系：9998886','/upload/item/shop/16/2017060609025850665.png','25','10',98,'2017-06-06 09:02:58','2017-06-06 09:02:58',1,10,16),
+	   (10,'珍珠奶茶','珍珠奶茶，弹性十足，香甜美味。','/upload/item/shop/20/2017060620114126875.jpg','10','8',100,'2017-06-06 20:11:41','2017-06-06 20:11:41',1,11,20),
+	   (11,'红豆奶茶','红豆和奶茶的完美结合，夏天不错的选择。','/upload/item/shop/20/2017060620363014331.jpg','10','8',99,'2017-06-06 20:36:30','2017-06-06 20:36:30',1,11,20),
+	   (12,'绿豆冰','清热解毒。','/upload/item/shop/20/2017060620384620536.jpg','8','7',98,'2017-06-06 20:38:46','2017-06-06 20:38:46',1,11,20),
+	   (13,'芒果冰沙','新鲜芒果制作。','/upload/item/shop/20/2017060620472125629.jpg','15','13',95,'2017-06-06 20:47:21','2017-06-06 20:47:21',1,11,20),
+	   (14,'鲜榨芒果汁','新鲜芒果新鲜榨，香甜可口，解暑降温。','/upload/item/shop/20/2017060620492297296.jpg','8','8',93,'2017-06-06 20:49:22','2017-06-06 20:49:22',1,11,20),
+	   (15,'鲜榨西瓜汁','每一杯都是鲜榨的，现榨现卖。','/upload/item/shop/20/2017060621052824735.jpg','8','8',90,'2017-06-06 21:05:28','2017-06-06 21:05:28',1,11,20);
+/*!40000 ALTER TABLE `tb_product` ENABLE KEYS */;
+UNLOCK TABLES;
+
 --
 -- Table structure for table `tb_product_category`
 --
@@ -200,6 +218,20 @@ INSERT INTO `o2o`.`tb_product_category` (`product_category_id`, `product_categor
 /*!40000 ALTER TABLE `tb_product_category` ENABLE KEYS */;
 UNLOCK TABLES;
 
+LOCK TABLES `tb_product_category` WRITE;
+/*!40000 ALTER TABLE `tb_product_category` DISABLE KEYS */;
+INSERT INTO `tb_product_category` 
+VALUES (9,'二手车',100,NULL,15),
+	   (10,'二手书籍',100,NULL,16),
+	   (11,'奶茶',100,NULL,20),
+	   (12,'咖啡',50,NULL,20),
+	   (13,'甜品',30,NULL,20),
+	   (14,'小吃',20,NULL,20),
+	   (15,'茗茶',10,NULL,20);
+/*!40000 ALTER TABLE `tb_product_category` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
 --
 -- Table structure for table `tb_product_img`
 --
@@ -218,6 +250,31 @@ create table `tb_product_img`(
     constraint `fk_proimg_product` foreign key(`product_id`) references `tb_product`(`product_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+LOCK TABLES `tb_product_img` WRITE;
+/*!40000 ALTER TABLE `tb_product_img` DISABLE KEYS */;
+INSERT INTO `tb_product_img` VALUES 
+(19,'/upload/item/shop/15/20170605233021865310.jpg','null',NULL,'2017-06-05 23:30:22',4),
+(20,'/upload/item/shop/15/20170605233022618071.jpg','null',NULL,'2017-06-05 23:30:22',4),
+(21,'/upload/item/shop/15/20170605233022246642.jpg','null',NULL,'2017-06-05 23:30:22',4),
+(22,'/upload/item/shop/15/20170605234852321010.jpg','null',NULL,'2017-06-05 23:48:52',5),
+(23,'/upload/item/shop/15/20170606084902162950.jpg','null',NULL,'2017-06-06 08:49:02',6),
+(24,'/upload/item/shop/15/20170606085020558290.jpg','null',NULL,'2017-06-06 08:50:20',7),
+(25,'/upload/item/shop/16/20170606085740956160.jpg','null',NULL,'2017-06-06 08:57:40',8),
+(26,'/upload/item/shop/16/20170606090259397060.png','null',NULL,'2017-06-06 09:02:59',9),
+(27,'/upload/item/shop/20/20170606201141425050.jpg','null',NULL,'2017-06-06 20:11:42',10),
+(28,'/upload/item/shop/20/20170606201141387851.jpg','null',NULL,'2017-06-06 20:11:42',10),
+(29,'/upload/item/shop/20/20170606201141503752.png','null',NULL,'2017-06-06 20:11:42',10),
+(30,'/upload/item/shop/20/20170606203630923430.jpg','null',NULL,'2017-06-06 20:36:31',11),
+(31,'/upload/item/shop/20/20170606203631552081.png','null',NULL,'2017-06-06 20:36:31',11),
+(32,'/upload/item/shop/20/20170606203631972862.jpg','null',NULL,'2017-06-06 20:36:31',11),
+(33,'/upload/item/shop/20/20170606203846623120.jpg','null',NULL,'2017-06-06 20:38:47',12),
+(34,'/upload/item/shop/20/20170606204721744860.jpg','null',NULL,'2017-06-06 20:47:21',13),
+(35,'/upload/item/shop/20/20170606204922968580.jpg','null',NULL,'2017-06-06 20:49:23',14),
+(36,'/upload/item/shop/20/20170606210528529220.jpg','null',NULL,'2017-06-06 21:05:28',15),
+(37,'/upload/item/shop/20/20170606210528132921.jpg','null',NULL,'2017-06-06 21:05:28',15);
+/*!40000 ALTER TABLE `tb_product_img` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `tb_shop`
