@@ -106,10 +106,10 @@ $(function() {
 				var total = $('.list-div .card').length;
 				// 若总数大于等于查询的总数，则停止加载
 				if (total >= maxItems) {
-					// 加载完毕，则注销无限加载事件，以防不必要的加载
-					$.detachInfiniteScroll($('.infinite-scroll'));
-					// 删除加载提示符
-					$('.infinite-scroll-preloader').remove();
+					// 隐藏加载提示符
+					$('.infinite-scroll-preloader').hide();
+				} else {
+					$('.infinite-scroll-preloader').show();
 				}
 				// 否则页码加一，继续加载新店铺
 				pageNum += 1;
