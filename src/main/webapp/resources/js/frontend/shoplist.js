@@ -167,8 +167,9 @@ $(function() {
 				}
 			});
 
-	// 需要查询的店铺名发生变化之后，重置页码，清空原店铺列表，按照新名进行查询
-	$('#search').on('input', function(e) {
+	// 需要查询的店铺名发生变化之后，重置页码，清空原店铺列表，按照新名进行查询 (input对部分浏览器会出现错误)
+	// $('#search').on('input', function(e) {
+	$('#search').on('change', function(e) {
 		shopName = e.target.value;
 		$('.list-div').empty();
 		pageNum = 1;

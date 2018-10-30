@@ -144,7 +144,7 @@ $(function() {
 	});
 	
 	// 需要查询的商品名发生变化后，重置页码，清空原商品列表，按照新的名字去查询
-	$('#search').on('input', function(e) {
+	$('#search').on('change', function(e) {
 		productName = e.target.value;
 		$('.list-div').empty();
 		pageNum = 1;
